@@ -23,10 +23,11 @@ void selection_sort(int *array, size_t size)
 		}
 		if (position != i)
 		{
-			swap = array[i];
-			array[i] = array[position];
+			swap = array[position];
+			array[position] = array[i];
+			array[i] = swap;
+
 			print_array(array, size);
-			array[position] = swap;
 		}
 
 	}
