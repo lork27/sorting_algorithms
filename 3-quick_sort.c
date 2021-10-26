@@ -75,8 +75,8 @@ void quicksort(int *array, int low, int high, size_t size)
 	if (low < high)
 	{
 		pivot = partition(array, low, high);
+		print_array(array, size);
 		quicksort(array, low, pivot - 1, size);
 		quicksort(array, pivot + 1, high, size);
-		print_array(array, size);
 	}
 }
