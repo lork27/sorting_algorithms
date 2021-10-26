@@ -5,25 +5,29 @@ void quicksort(int *array, int low, int high, size_t size);
  *swap - two numbers
  *@a: int
  *@b: int
+ *@array: to print
+ *@size: of array
  */
 
-void swap(int *a, int *b)
+void swap(int *a, int *b, int *array, size_t size)
 {
 	int t;
 
 	t = *a;
 	*a = *b;
 	*b = t;
+	print_array(array, size);
 }
 /**
  *partition - takes last element as pivot, places pivot at correct position
  *@array: sub array being ordered
  *@low: smallest num
  *@high: biggest num
+ *@size: of array
  *Return: index of smaller element + 1
  */
 
-int partition(int *array, int low, int high)
+int partition(int *array, int low, int high, size_t size)
 {
 	int pivot = array[high];
 	int i = (low - 1);
@@ -34,10 +38,11 @@ int partition(int *array, int low, int high)
 		if (array[j] < pivot)
 		{
 			i++;
-			swap(&array[i], &array[j]);
+			swap(&array[i], &array[j], array, size);
 		}
 	}
-	swap(&array[i + 1], &array[high]);
+	swap(&array[i + 1], &array[high], array, size);
+
 	return (i + 1);
 }
 
@@ -58,6 +63,7 @@ void quick_sort(int *array, size_t size)
 	low = 0;
 	high = size - 1;
 	quicksort(array, low, high, size);
+
 }
 
 /**
@@ -74,8 +80,7 @@ void quicksort(int *array, int low, int high, size_t size)
 
 	if (low < high)
 	{
-		pivot = partition(array, low, high);
-		print_array(array, size);
+		pivot = partition(array, low, high, size);
 		quicksort(array, low, pivot - 1, size);
 		quicksort(array, pivot + 1, high, size);
 	}
