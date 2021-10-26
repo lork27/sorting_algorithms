@@ -12,8 +12,7 @@ void quicksort(int *array, int low, int high, size_t size);
 void swap(int a, int b, int *array, size_t size)
 {
 	int t;
-	if (a == b)
-		return;
+
 	t = array[a];
 	array[a] = array[b];
 	array[b] = t;
@@ -34,7 +33,7 @@ int partition(int *array, int low, int high, size_t size)
 	int newpivot = low;
 	int i;
 
-	for (i = low; i < high; ++i)
+	for (i = low; i < high; i++)
 	{
 		if (array[i] < pivot)
 		{
