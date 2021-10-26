@@ -9,13 +9,13 @@ void quicksort(int *array, int low, int high, size_t size);
  *@size: of array
  */
 
-void swap(int *a, int *b, int *array, size_t size)
+void swap(int a, int b, int *array, size_t size)
 {
 	int t;
 
-	t = *a;
-	*a = *b;
-	*b = t;
+	t = array[a];
+	array[a] = array[b];
+	array[b] = t;
 	print_array(array, size);
 }
 /**
@@ -30,20 +30,24 @@ void swap(int *a, int *b, int *array, size_t size)
 int partition(int *array, int low, int high, size_t size)
 {
 	int pivot = array[high];
-	int i = (low - 1);
-	int j;
+	int newpivot = low;
+	int i;
 
-	for (j = low; j <= high - 1; j++)
+	for (i = low; i < high; ++i)
 	{
-		if (array[j] < pivot)
+		if (array[i] < pivot)
 		{
-			i++;
-			swap(&array[i], &array[j], array, size);
+			if (i != newpivot)
+				swap(newpivot, i, array, size);
+			newpivot++;
 		}
 	}
-	swap(&array[i + 1], &array[high], array, size);
+	if (newpivot != high)
+	{
+		swap(newpivot, high, array, size);
+	}
 
-	return (i + 1);
+	return (newpivot);
 }
 
 
@@ -56,13 +60,10 @@ int partition(int *array, int low, int high, size_t size)
 
 void quick_sort(int *array, size_t size)
 {
-	int low, high;
 
 	if (array == NULL || size < 2)
 		return;
-	low = 0;
-	high = size - 1;
-	quicksort(array, low, high, size);
+	quicksort(array, 0, size - 1, size);
 
 }
 
