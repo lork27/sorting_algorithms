@@ -10,6 +10,9 @@ void selection_sort(int *array, size_t size)
 {
 	unsigned long int i, j, position, swap;
 
+	if (array == NULL || size < 2)
+		return;
+
 	for (i = 0; i < size - 1; i++)
 	{
 		if (i > 0)
