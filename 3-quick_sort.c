@@ -85,4 +85,6 @@ void quicksort(int *array, int low, int high, size_t size)
 		quicksort(array, low, pivot - 1, size);
 		quicksort(array, pivot + 1, high, size);
 	}
+	else
+		return;
 }
